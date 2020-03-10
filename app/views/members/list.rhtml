@@ -1,0 +1,35 @@
+<h1>SS Members</h1>
+
+<% unless flash[:notice].nil? %> <h3> <%=h flash[:notice] %> </h3> <% end %>
+
+<%= start_form_tag :action => :add %>
+Add new member <%= text_field :post, :username %>
+<%= submit_tag "Add" %>
+<%= end_form_tag %>
+
+<table class="sortable" id="member_list">
+<th>Name</th>
+<th>Reinc</th>
+<th>Pool points</th>
+<th>Total pool points</th>
+<th>Dice points</th>
+<% i = 0
+   for member in @members
+   pts = member.pool_points
+    %>
+
+  <tr <%= tr_class(i) %> >
+  <td class="c1"> <%= member.Username %></td>
+  <td class="c2"><%= member.reinc %></td>
+  <td class="c1"><span style="color: <%= pts<-member.total_pool_points/10 ? "#f33" : "#fff" %>"><%= pts%></span></td>
+  <td class="c2"><%= member.total_pool_points %></td>
+  <td class="c1"><%= member.dice_points%></td>
+  <td><%= link_to 'claims', { :controller => 'eq_locator', :action => 'list', "post[location]" => '@'+member.Username } %></td>
+  <td><%= link_to 'edit', { :action => 'edit', :id => member }%></td>
+  <td><%= link_to 'remove', { :action => 'remove', :id => member }%></td>
+  </tr>
+<% i = i+1
+   end %>
+</table>
+
+<br />

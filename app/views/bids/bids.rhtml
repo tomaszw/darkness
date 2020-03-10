@@ -1,0 +1,20 @@
+<h1>Use of dice points</h1>
+<table class="sortable">
+<th>Party name</th>
+<th>Party date</th>
+<th>Used dice</th>
+<% @pms.each do |pm| dp = pm.dice_pts_used 
+   i = 0 %>
+<tr <%= tr_class(i) %> >
+<td> <%= pm.party.name %> </td>
+<td> <%= pm.party.partydate %> </td>
+<td> <%= 
+if dp > 0
+  dp = "<span style=\"color: #f00\">" + dp.to_s + "</span>"
+end
+dp
+%></td>
+</tr>
+<% i = i+1 
+   end %>
+</table>

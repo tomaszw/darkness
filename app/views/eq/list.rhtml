@@ -1,0 +1,22 @@
+<h1>Items</h1>
+<% unless flash[:notice].nil? %> <h3> <%=h flash[:notice] %> </h3> <% end %>
+<%= link_to 'Add new item', :action => 'add' %>
+<table class="sortable" id="eq_list">
+<th >Mob</th>
+<th >Desc</th>
+<th >Stats</th>
+<th >Value</th>
+<% i = 0
+   @eqs.each do |eq| %>
+    <tr <%=tr_class(i)%> >
+    <td class ="c2"><%=eq.mob%></td>
+    <td class ="c1"><%=eq.sdesc%></td>
+    <td class ="c2"><%=eq.stats%></td>
+    <td class ="c1"><%=eq.points%></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => eq %></td>
+    <td><%= link_to 'Remove', :action => 'remove', :id => eq %></td>
+    
+    </tr>
+<% i = i+1
+   end %>
+</table>

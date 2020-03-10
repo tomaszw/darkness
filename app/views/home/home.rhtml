@@ -1,0 +1,17 @@
+<h1><%= @username %>'s home</h1>
+<% if controller.admin? %>
+<h4> I am logged in with administrator privileges.</h4>
+<% end %>
+
+My current reinc is:<br/><%= in_place_editor_field :member, :reinc, {}, { :highlightcolor => '#000000', :highlightendcolor => '#000000'} %>
+<br/>
+My email address is: <br/><%= in_place_editor_field :member, :email %><br/>
+<%= link_to 'I want to change my other data (password etc.)', 
+    :controller => 'members', :action => 'edit', :id => @member.id %>
+<p>
+I have participated in parties that gave me <b><%= @member.total_pool_points %></b>
+total pool points, but currently I have only <b><%= @member.pool_points %></b> left. Oh noe.
+I'm eager to get my hands on any equipment there is available, if only I can afford it.
+So far I have collected:
+<%= render :partial => '/eq_locator/eq_instances' %>
+</p>

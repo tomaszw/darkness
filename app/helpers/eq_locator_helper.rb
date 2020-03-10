@@ -1,0 +1,2 @@
+module EqLocatorHelper
+end

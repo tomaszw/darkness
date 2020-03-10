@@ -1,0 +1,65 @@
+<h1>Party information</h1>
+<%= link_to 'Back to list of parties', :controller => 'party', :action => 'list' %>
+<table>
+<tr><td>
+Party Name</td>
+<td><%= in_place_editor_field :party, 'name' %></td>
+</tr>
+<tr><td>
+Party Date</td>
+<td><%= in_place_editor_field :party, 'partydate' %></td>
+</tr>
+<tr><td>
+Party dice point factor</td>
+<td><%= in_place_editor_field :party, 'dice_factor' %>%</td>
+</tr>
+</table>
+
+<hr/>
+<div>
+<!-- MEMBERS -->
+<%= start_form_tag :action => 'add_member' %>
+<%= hidden_field_tag 'party_id', @party.id %>
+<%= select_tag 'added_member', @added_member_opts %>
+<%= submit_tag 'Add member' %>
+<%= end_form_tag %>
+<table>
+<th>Member</th><th>Dice used</th><th>Effort</th>
+<% @members.each do |@member| %>
+<tr><td> <%= @member.Username %>
+</td>
+<td>
+<%= in_place_editor_field :member, 'dice_pts_used' %>
+</td>
+<td>
+<%= in_place_editor_field :member, 'effort' %>%
+</td>
+<td><%= link_to 'remove', 
+        { :action => 'del_member',
+          :party_id  => @party.id,
+          :member_id => @member.member_id } %></td>
+</tr>
+<% end %>
+</table>
+</div>
+<hr/>
+
+<!-- EQS -->
+<%= start_form_tag :action => 'add_eq' %>
+<%= hidden_field_tag 'party_id', @party.id %>
+<%= select_tag 'eq_id', @eq_opts %>
+<%= submit_tag 'Add eq' %>
+<%= end_form_tag %>
+<table border="1" rules="cols">
+<% @eqs.each do |@eq| %>
+<tr><td><%= @eq.sdesc %></td>
+    <td><%= @eq.stats %></td>
+    <td><%= @eq.points %></td>
+<td><%= link_to 'remove', 
+        { :action => 'del_eq',
+          :party_id  => @party.id,
+          :instance_id => @eq.id } %></td>
+</tr>
+</tr>
+<% end %>
+</table>

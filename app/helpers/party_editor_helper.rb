@@ -1,0 +1,2 @@
+module PartyEditorHelper
+end

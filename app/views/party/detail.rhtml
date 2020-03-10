@@ -1,0 +1,46 @@
+<h1>Party information</h1>
+<%= link_to 'Back to list of parties', :controller => 'party', :action => 'list' %>
+<table>
+<tr><td>
+Party Name:</td>
+<td><%= @party.name %></td>
+</tr>
+<tr><td>
+Party Date:</td>
+<td><%= @party.partydate %></td>
+</tr>
+<tr><td>
+Party dice point factor</td>
+<td><%= @party.dice_factor %>%</td>
+</tr>
+</table>
+
+<hr/>
+<div>
+<!-- MEMBERS -->
+<table border="0" rules="none">
+<th>Who</th><th>Dice used</th><th>Effort</th>
+<% @members.each do |@member| %>
+<tr><td> <%= @member.Username %>
+</td>
+<td>
+<%= @member.dice_pts_used %> points
+</td>
+<td>
+<%= @member.effort %>%
+</td>
+</tr>
+<% end %>
+</table>
+</div>
+<hr/>
+
+<!-- EQS -->
+<table border="1" rules="cols">
+<% @eqs.each do |@eq| %>
+<tr><td><%= @eq.sdesc %></td>
+    <td><%= @eq.stats %></td>
+    <td><%= @eq.points %></td>
+</tr>
+<% end %>
+</table>

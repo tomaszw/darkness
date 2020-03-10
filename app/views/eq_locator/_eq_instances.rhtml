@@ -1,0 +1,38 @@
+<table id="eq_list" class="sortable">
+<% unless @omit_cb %>
+<th></th>
+<% end %>
+<th>Eq</th>
+<th>Mob</th>
+<th>Value</th>
+<th>Names</th>
+<% unless @omit_location %>
+<th>Location</th>
+<th></th>
+<% end %>
+<% 
+  sum = 0
+  i = 0
+  @eq_instances.each do |eq|
+    sum += eq.points  
+%>
+<tr <%= tr_class(i) %> >
+<% unless @omit_cb %>
+<td class ="c1"><%= check_box_tag ('cb_'+eq.id.to_s) %></td>
+<% end %>
+<td class ="c2"><%= eq.sdesc + " (" + eq.stats + ")" %></td>
+<td class ="c1"><%= eq.mob %></td>
+<td class ="c2"><%= eq.points %></td>
+<td class ="c1"><%= eq.names_with_lite(controller.me).join(", ") %></td>
+<% unless @omit_location %>
+<td class ="c2"><%= eq.fmt_location %></td>
+<% end %>
+</tr>
+<% i = i+1
+   end %>
+</table>
+<table>
+<tr>
+<td><b>For a total amount of</b></td><td><%= sum %><b> points</b></td>
+<tr>
+</table>

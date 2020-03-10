@@ -1,0 +1,19 @@
+<h1>Sign up for party</h1>
+<%= start_form_tag :action => :save_signup %>
+
+<%= error_messages_for 'signup' %>
+
+<!--[form:member]-->
+
+<%= hidden_field('signup', 'party_id') unless @signup.party.nil? %>
+<%= hidden_field('signup', 'member_id') unless @signup.member.nil? %>
+
+<p><label for="signup_status">Status</label><br/>
+<%= select 'signup', 'status', [['Available','A'], ['Resigned','R'], ['Uncertain','U']] %>
+
+<p><label for="signup_comment">Comment</label><br/>
+<%= text_area 'signup', 'comment', :rows => 4 %></p>
+
+<%= submit_tag 'Save' %>
+
+<%= end_form_tag %>

@@ -1,0 +1,23 @@
+<h1>Transfers</h1>
+<%= "<h3>#{flash[:notice]}</h3>" unless flash[:notice].nil? %>
+<%= start_form_tag :action => :realize %>
+I want to transfer
+<%= text_field :post, :amount %>
+points to
+<%= select :post, :to, @members %>
+<%= submit_tag 'Make transfer' %>
+<%= end_form_tag %>
+
+<table id="xfer_list" class="sortable">
+<th>From</th>
+<th>To</th>
+<th>Amount</th>
+<th>When</th>
+<% @transfers.each do |t| %>
+<tr>
+<td class ="c1"><%= t.member_from.Username %></td>
+<td class ="c2"><%= t.member_to.Username %></td>
+<td class ="c1"><%= t.amount %></td>
+<td class ="c2"><%= t.stamp.strftime("%d.%m.%Y") %></td>
+</tr>
+<% end %>

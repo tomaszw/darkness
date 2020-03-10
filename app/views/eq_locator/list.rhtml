@@ -1,0 +1,27 @@
+<h1>Locating items</h1>
+<%= start_form_tag (:action => 'list') %>
+<table>
+<tr>
+<td><label for="location">Location</label></td>
+<td><%= select :post, :location, @list_of_locations %></td>
+</tr>
+<!--<tr>
+<td>
+<label for="name">Name on eq</label>
+</td>
+<td><%= select :post, :name_on_eq, @name_options %></td>
+</tr>
+-->
+<tr><td><label for="eq_sdesc">Sdesc fragment</label></td>
+<td><%= text_field :post, :sdesc %></td></tr>
+</table>
+<%= submit_tag 'Search' %>
+<%= end_form_tag %>
+<%= start_form_tag :action => :move %>
+Move selected pieces of equipment to <%= select :post, :move_location, @list_of_locations.find_all {|l| l != ['@anywhere','@anywhere'] } %>
+<%= submit_tag 'Do move' %>
+
+<p>Found <%= @eq_instances.size %> pieces of equipment that satisfy scan parameters. Click on table
+column to perform sorting.</p>
+<%= render :partial => 'eq_instances' %>
+<%= end_form_tag %>

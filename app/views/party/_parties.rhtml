@@ -1,0 +1,41 @@
+<%= pagination_links(@party_pages) %>
+<table>
+<!--
+<th>Date</th>
+<th>Name</th>
+<th>Members & eq</th>
+-->
+<% @parties.each do |party| %>
+    <tr>
+    <td valign="top">
+        <div id="party_hdr"><%=party.date%></div>
+    </td>
+    <td valign="top">
+      <div id="party_hdr" style="color: #ffa000"><%=party.name%></div>
+      <span style="color: #b07000"><%=party.points%> pts</span>
+    </td>
+    <td>
+      <div id="party_hdr"> <%= party.member_names_with_effort.join(", ") %></div>
+      <table id="party_eq" width="100%"> 
+        <% party.eq_instances.each do |inst| %>
+        <tr><td>
+        <%= inst.eq.sdesc + ' ' + inst.eq.stats %>
+        </td>
+        <td align="right"> <%= inst.fmt_location %>
+        </td>
+        </tr>
+        <% end %>
+      </table>
+    </td>
+    <td valign="top">
+      <%= link_to 'edit', { :action => :edit, :id => party.id } %>
+    <br/>
+      <%= link_to 'remove', { :action => :remove, :id => party.id } %>
+    <br/>
+      <%= link_to 'detail', { :action => :detail, :id => party.id } %>
+    </td>
+    
+    </tr>
+<% end %>
+</table>
+<%= pagination_links(@party_pages) %>

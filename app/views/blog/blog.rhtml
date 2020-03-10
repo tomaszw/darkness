@@ -1,0 +1,14 @@
+<pre>
+<% @klass = 0
+   @eqs.each do |eq| %>
+<%= 
+hdr = ""
+if eq.klass <> @klass
+  @klass = eq.klass
+  hdr = @klass + ":\n"
+end
+txt = eq.sdesc + " (" + eq.stats + ")"
+txt = hdr + txt[0..71] + " "
+"%-10s%-73s%5s" % [eq.klass, txt, eq.sales_value] %><% end %>
+</pre>
+</table>

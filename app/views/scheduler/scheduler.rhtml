@@ -1,0 +1,59 @@
+<h1>Planned parties</h1>
+<p><%= link_to 'add party request', :action => :add_request %>
+</p>
+<table>
+<th>Leader</th>
+<th>What</th>
+<th>When</th>
+<th>Signups & Comments</th>
+<th></th>
+<% @parties.each do |p| %>
+<tr>
+<td valign="top" style="color: #f00"><%=h p.requestor.Username%></td>
+<td valign="top" style="color: #fa0"><%=h p.what%></td>
+<td valign="top" ><%=h p.planned_time%></td>
+<td valign="top" ><div style="background-color: #000; color: #fa0"><%=h p.comment%></div>
+<table style="font-size: 75%">
+<tr>
+<td style="color: #0f0" colspan="3">Dramatis personae:</td>
+</tr>
+<% p.signups_avail.each do |signup| %>
+<tr>
+<td valign="top" style="color: #f00"><%=h signup.member.Username %></td>
+<td valign="top" ><%=h signup.member.reinc %></td>
+<td valign="top" ><%=h signup.comment %></td>
+</tr>
+<% end %>
+<tr>
+<td style="color: #0f0" colspan="3">Uncertain persona:</td>
+</tr>
+<% p.signups_uncertain.each do |signup| %>
+<tr>
+<td valign="top"  style="color: #f00"><%=h signup.member.Username %></td>
+<td valign="top" ><%=h signup.member.reinc %></td>
+<td valign="top" ><%=h signup.comment %></td>
+</tr>
+<% end %>
+<tr>
+<td style="color: #0f0" colspan="3">Resigned and excused persona:</td>
+</tr>
+<% p.signups_resigned.each do |signup| %>
+<tr>
+<td valign="top"  style="color: #f00"><%=h signup.member.Username %></td>
+<td valign="top" ><%=h signup.member.reinc %></td>
+<td valign="top" ><%=h signup.comment %></td>
+</tr>
+<% end %>
+</table>
+</td>
+    <td valign="top">
+<% if controller.see_edit_ctrls(p) %>
+      <%= link_to 'edit', { :action => :edit, :id => p.id } %>
+    <br/>
+      <%= link_to 'remove', { :action => :remove, :id => p.id } %>
+    <br/>
+<% end %> 
+      <%= link_to 'signup', { :action => :signup, :id => p.id } %>
+    </td>
+</tr>
+<% end %>

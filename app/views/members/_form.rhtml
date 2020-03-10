@@ -1,0 +1,21 @@
+<%= error_messages_for 'member' %>
+
+<!--[form:member]-->
+
+<p><label for="member_reinc">Reinc</label><br/>
+<%= text_field 'member', 'reinc'  %></p>
+
+<p><label for="member_email">Email</label><br/>
+<%= text_field 'member', 'email'  %></p>
+
+<p><label for="member_pass">Password</label><br/>
+<%= password_field 'member', 'pass' %></p>
+
+<p><label for="member_confirm_pass">Confirm password</label><br/>
+<%= password_field_tag 'confirm_pass', @member.pass %></p>
+
+<p><label for="member_admin">Administrator</label><br/>
+<%= check_box 'member', 'admin' %></p>
+
+<!--[eoform:member]-->
+

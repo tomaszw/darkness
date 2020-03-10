@@ -1,0 +1,21 @@
+<h1><%= @party.id ? "Editing party request" : "Adding party request" %></h1>
+<%= start_form_tag :action => :save_party %>
+
+<%= error_messages_for 'party' %>
+
+<!--[form:member]-->
+
+<%= hidden_field('party', 'id') unless @party.id.nil? %>
+
+<p><label for="party_planned_time">When</label><br/>
+<%= text_field 'party', 'planned_time'  %></p>
+
+<p><label for="party_what">What</label><br/>
+<%= text_field 'party', 'what'  %></p>
+
+<p><label for="party_comment">Comment</label><br/>
+<%= text_area 'party', 'comment', :rows => 4 %></p>
+
+<%= submit_tag 'Save' %>
+
+<%= end_form_tag %>

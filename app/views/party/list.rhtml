@@ -1,0 +1,12 @@
+<h1>Parties</h1>
+<%= start_form_tag(:action => 'change_per_page') %>
+<div align="left">
+Parties per page <%= text_field_tag :per_page, @per_page, :size => 5 %>
+<%= submit_tag 'Change' %>
+<%= end_form_tag %>
+</div>
+<%= link_to 'Add new party', :controller => 'party', :action => 'add' %>
+
+<div id="parties">
+<%= render :partial => 'parties' %>
+</div>
